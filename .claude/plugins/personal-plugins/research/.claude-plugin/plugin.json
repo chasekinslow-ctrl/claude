@@ -1,0 +1,8 @@
+{
+  "name": "research",
+  "version": "2.1.0",
+  "description": "Multi-source research skill for Claude Code. Queries Brave Search, Perplexity, Tavily, Exa, and Context7 in parallel, then synthesizes a unified answer. Works with any subset of sources — even just one.",
+  "author": {
+    "name": "Blue Tractor"
+  }
+}
