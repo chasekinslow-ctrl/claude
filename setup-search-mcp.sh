@@ -70,8 +70,13 @@ if command -v claude >/dev/null 2>&1; then
   claude mcp add-json tavily "{\"command\":\"npx\",\"args\":[\"-y\",\"tavily-mcp\"],\"env\":{\"TAVILY_API_KEY\":\"${TAVILY_API_KEY}\"}}"                          2>/dev/null || echo "  (skipped tavily — may already exist)"
   claude mcp add-json exa    "{\"command\":\"npx\",\"args\":[\"-y\",\"exa-mcp-server\"],\"env\":{\"EXA_API_KEY\":\"${EXA_API_KEY}\"}}"                            2>/dev/null || echo "  (skipped exa — may already exist)"
   echo
-  echo "Current MCP servers:"
-  claude mcp list 2>/dev/null || true
+  echo "Registered MCP servers (names only; skipping live health check):"
+  # `claude mcp list` runs a health check that launches each server and can
+  # hang when there's no network, so guard it with a timeout and fall back
+  # to grepping the names if it stalls.
+  if ! timeout 10 claude mcp list 2>/dev/null; then
+    echo "  (health check skipped/timed out — servers are still registered)"
+  fi
 else
   echo "claude CLI not found — relying on $OUT only."
 fi
