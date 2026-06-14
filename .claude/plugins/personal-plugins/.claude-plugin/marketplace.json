@@ -1,0 +1,12 @@
+{
+  "name": "personal-plugins",
+  "owner": {
+    "name": "chase.kinslow"
+  },
+  "plugins": [
+    {
+      "name": "research",
+      "source": "./research"
+    }
+  ]
+}

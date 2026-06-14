@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "personal-plugins": {
+      "source": {
+        "source": "directory",
+        "path": "./.claude/plugins/personal-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "research@personal-plugins": true
+  }
+}
